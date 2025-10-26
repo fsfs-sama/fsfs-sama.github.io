@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fsfs的个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        
+         :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+        /* 导航栏 */
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        /* 英雄区域 */
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .hero-btns .btn {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .hero-btns .btn:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        /* 功能区域 */
+        
+        .features {
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        /* 论坛样式 */
+        
+        .forum-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .forum-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .forum-content {
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .forum-post {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .forum-form {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        /* 做题记录样式 */
+        
+        .records-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .records-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px;
+        }
+        
+        .records-content {
+            padding: 20px;
+        }
+        
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .records-table th,
+        .records-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .records-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .records-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .status-completed {
+            color: #28a745;
+        }
+        
+        .status-pending {
+            color: #ffc107;
+        }
+        /* DeepSeek AI 样式 */
+        
+        .ai-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .ai-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px;
+        }
+        
+        .ai-content {
+            padding: 20px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .ai-chat {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .ai-message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+        
+        .ai-user {
+            background-color: var(--primary-color);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .ai-bot {
+            background-color: #e9ecef;
+            color: var(--text-color);
+        }
+        
+        .ai-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .ai-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        /* 下载区域样式 */
+        
+        .downloads-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .downloads-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px;
+        }
+        
+        .downloads-content {
+            padding: 20px;
+        }
+        
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .download-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .download-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .download-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        .download-info p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        /* 页脚 */
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-links h3,
+        .footer-social h3 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        /* 响应式设计 */
+        
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-btns .btn {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">个人主页</a>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#features">功能</a></li>
+                    <li><a href="#forum">论坛</a></li>
+                    <li><a href="#records">做题记录</a></li>
+                    <li><a href="#ai">AI助手</a></li>
+                    <li><a href="#downloads">资源下载</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>欢迎来到风速法师的<span style="color: var(--accent-color);">个人主页</span></h1>
+                <p>这里是一个多功能平台，包含论坛交流、做题记录、AI助手和资源下载等功能，为您提供全面的学习和交流体验。</p>
+                <div class="hero-btns">
+                    <a href="#features" class="btn">探索功能</a>
+                    <a href="#forum" class="btn">参与讨论</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能概览 -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">平台功能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>社区论坛</h3>
+                    <p>与社区成员交流想法，分享经验，讨论技术问题。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>做题记录</h3>
+                    <p>记录您的学习进度，跟踪题目完成情况和成绩。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI助手</h3>
+                    <p>内置DeepSeek AI助手，随时解答您的问题。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>资源下载</h3>
+                    <p>提供各种学习资源、工具和文档的下载。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 论坛 -->
+    <section id="forum" style="background-color: #f5f7fa;">
+        <div class="container">
+            <h2 class="section-title">社区论坛</h2>
+
+            <!-- 帖子列表视图 -->
+            <div class="forum-container" id="forumListView">
+                <div class="forum-header">
+                    <h3>最新讨论</h3>
+                    <div>
+                        <button class="btn" id="clearForumBtn" style="background-color: #dc3545; margin-right: 10px;">清空记录</button>
+                        <button class="btn" id="newPostBtn">发表新帖</button>
+                    </div>
+                </div>
+                <div class="forum-content" id="forumContent">
+                    <!-- 论坛帖子将通过JavaScript动态加载 -->
+                    <div style="text-align: center; padding: 20px; color: #666;">
+                        <p>暂无帖子，点击"发表新帖"创建第一个帖子吧！</p>
+                    </div>
+                </div>
+                <div class="forum-form" id="postForm" style="display: none;">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="postTitle" placeholder="帖子标题">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="postContent" placeholder="帖子内容" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" id="submitPost">提交帖子</button>
+                        <button class="btn" style="background-color: #6c757d;" id="cancelPost">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 帖子详情视图 -->
+            <div class="forum-container" id="forumDetailView" style="display: none;">
+                <div class="forum-header">
+                    <button class="btn" id="backToList" style="background-color: #6c757d; margin-right: 10px;">返回列表</button>
+                    <h3 id="detailTitle">帖子标题</h3>
+                </div>
+                <div class="forum-content" id="postDetail">
+                    <!-- 帖子详情将通过JavaScript动态加载 -->
+                </div>
+                <div class="forum-form">
+                    <h4>发表回复</h4>
+                    <div class="form-group">
+                        <textarea class="form-control" id="replyContent" placeholder="回复内容" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" id="submitReply">提交回复</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 做题记录 -->
+    <section id="records">
+        <div class="container">
+            <h2 class="section-title">做题记录</h2>
+            <div class="records-container">
+                <div class="records-header">
+                    <h3>我的学习进度</h3>
+                    <button class="btn" id="addRecordBtn">添加新记录</button>
+                </div>
+                <div class="records-content">
+                    <table class="records-table">
+                        <thead>
+                            <tr>
+                                <th>题目编号</th>
+                                <th>题目名称</th>
+                                <th>难度</th>
+                                <th>完成日期</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsTable">
+                            <!-- 记录将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 添加/编辑记录模态框 -->
+    <div class="modal" id="recordModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="modal-content" style="background-color: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 800px; max-height: 90%; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 id="modalTitle">添加做题记录</h3>
+                <button id="closeRecordModal" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="problemId">题目编号:</label>
+                    <input type="text" id="problemId" class="form-control" placeholder="例如: P1001">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="problemName">题目名称:</label>
+                    <input type="text" id="problemName" class="form-control" placeholder="例如: A+B问题">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="difficulty">难度:</label>
+                    <select id="difficulty" class="form-control">
+                        <option value="简单">简单</option>
+                        <option value="中等">中等</option>
+                        <option value="困难">困难</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="status">状态:</label>
+                    <select id="status" class="form-control">
+                        <option value="未开始">未开始</option>
+                        <option value="进行中">进行中</option>
+                        <option value="已完成">已完成</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="code">代码:</label>
+                    <textarea id="code" class="form-control" rows="10" placeholder="在此输入您的代码..."></textarea>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="notes">笔记:</label>
+                    <textarea id="notes" class="form-control" rows="3" placeholder="在此输入您的解题思路或笔记..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button id="cancelRecord" class="btn" style="background-color: #6c757d;">取消</button>
+                <button id="saveRecord" class="btn">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 查看代码模态框 -->
+    <div class="modal" id="codeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="modal-content" style="background-color: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 800px; max-height: 90%; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 id="codeModalTitle">题目代码</h3>
+                <button id="closeCodeModal" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label id="problemInfo">题目信息:</label>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px; position: relative;">
+                    <label>代码:</label>
+                    <button id="copyCodeBtn" class="btn" style="position: absolute; right: 10px; top: 30px; padding: 5px 10px; font-size: 14px;">复制代码</button>
+                    <pre id="codeDisplay" style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; white-space: pre-wrap; font-family: monospace; max-height: 400px; overflow-y: auto;"></pre>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>笔记:</label>
+                    <div id="notesDisplay" style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; min-height: 60px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button id="editCodeBtn" class="btn">编辑</button>
+                <button id="closeCodeModalBtn" class="btn" style="background-color: #6c757d;">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DeepSeek AI -->
+    <section id="ai" style="background-color: #f5f7fa;">
+        <div class="container">
+            <h2 class="section-title">DeepSeek AI助手</h2>
+            <div class="ai-container">
+                <div class="ai-header">
+                    <h3>智能问答助手</h3>
+                    <button class="btn" id="apiKeyBtn" style="background-color: transparent; border: 1px solid white; padding: 5px 10px; font-size: 14px;">配置API密钥</button>
+                </div>
+                <div class="ai-content">
+                    <div class="ai-chat" id="aiChat">
+                        <div class="ai-message ai-bot">
+                            您好！我是DeepSeek AI助手，有什么可以帮您的吗？
+                        </div>
+                    </div>
+                    <div class="ai-input">
+                        <input type="text" id="aiInput" placeholder="输入您的问题...">
+                        <button class="btn" id="aiSend">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="downloads">
+        <div class="container">
+            <h2 class="section-title">资源下载</h2>
+            <div class="downloads-container">
+                <div class="downloads-header">
+                    <h3>学习资源</h3>
+                </div>
+                <div class="downloads-content">
+                    <div class="downloads-grid" id="downloadsGrid">
+                        <!-- 下载资源将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">个人主页</div>
+                    <p>一个多功能平台，提供论坛交流、做题记录、AI助手和资源下载等功能。</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#features">功能</a></li>
+                        <li><a href="#forum">论坛</a></li>
+                        <li><a href="#records">做题记录</a></li>
+                        <li><a href="#ai">AI助手</a></li>
+                        <li><a href="#downloads">资源下载</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>关注我</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-zhihu"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 个人主页. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- API密钥配置模态框 -->
+    <div class="modal" id="apiKeyModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="modal-content" style="background-color: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 500px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3>配置DeepSeek API密钥</h3>
+                <button id="closeModal" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>请输入您的DeepSeek API密钥：</p>
+                <input type="password" id="apiKeyInput" class="form-control" placeholder="sk-..." style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <p style="font-size: 14px; color: #666;">您的API密钥将安全地存储在浏览器本地存储中，不会发送到任何服务器。</p>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button id="cancelApiKey" class="btn" style="background-color: #6c757d;">取消</button>
+                <button id="saveApiKey" class="btn">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 论坛功能
+        document.addEventListener('DOMContentLoaded', function() {
+                    // 初始化论坛帖子
+                    const forumContent = document.getElementById('forumContent');
+                    const postForm = document.getElementById('postForm');
+                    const newPostBtn = document.getElementById('newPostBtn');
+                    const submitPost = document.getElementById('submitPost');
+                    const cancelPost = document.getElementById('cancelPost');
+                    const submitReply = document.getElementById('submitReply');
+                    const replyContent = document.getElementById('replyContent');
+
+                    // 从localStorage获取帖子，不使用默认数据
+                    let posts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+
+                    // 当前查看的帖子ID
+                    let currentPostId = null;
+
+                    // 分页相关变量
+                    const POSTS_PER_PAGE = 5; // 每页显示的帖子数量
+                    let currentPage = 1; // 当前页码
+
+                    // 渲染论坛帖子
+                    function renderPosts() {
+                        forumContent.innerHTML = '';
+
+                        if (posts.length === 0) {
+                            forumContent.innerHTML = `
+                        <div style="text-align: center; padding: 20px; color: #666;">
+                            <p>暂无帖子，点击"发表新帖"创建第一个帖子吧！</p>
+                        </div>
+                    `;
+                        } else {
+                            // 计算总页数
+                            const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+                            // 确保当前页码有效
+                            if (currentPage < 1) currentPage = 1;
+                            if (currentPage > totalPages) currentPage = totalPages;
+
+                            // 计算当前页的帖子范围
+                            const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+                            const endIndex = Math.min(startIndex + POSTS_PER_PAGE, posts.length);
+
+                            // 渲染当前页的帖子
+                            for (let i = startIndex; i < endIndex; i++) {
+                                const post = posts[i];
+                                const postElement = document.createElement('div');
+                                postElement.className = 'forum-post';
+                                postElement.style.cursor = 'pointer';
+                                postElement.innerHTML = `
+                            <div class="post-header">
+                                <span>${post.author}</span>
+                                <span>${post.date}</span>
+                            </div>
+                            <h4>${post.title}</h4>
+                            <p>${post.content.substring(0, 100)}${post.content.length > 100 ? '...' : ''}</p>
+                            <div class="post-footer">
+                                <span>回复: ${post.replies ? post.replies.length : 0}</span>
+                            </div>
+                        `;
+
+                                // 添加点击事件
+                                postElement.addEventListener('click', function() {
+                                    viewPost(post.id);
+                                });
+
+                                forumContent.appendChild(postElement);
+                            }
+
+                            // 添加分页控件
+                            if (totalPages > 1) {
+                                const paginationElement = document.createElement('div');
+                                paginationElement.className = 'pagination';
+                                paginationElement.style.display = 'flex';
+                                paginationElement.style.justifyContent = 'center';
+                                paginationElement.style.marginTop = '20px';
+                                paginationElement.style.gap = '10px';
+
+                                // 上一页按钮
+                                const prevBtn = document.createElement('button');
+                                prevBtn.className = 'btn';
+                                prevBtn.textContent = '上一页';
+                                prevBtn.disabled = currentPage === 1;
+                                prevBtn.addEventListener('click', function() {
+                                    currentPage--;
+                                    renderPosts();
+                                });
+
+                                // 页码按钮
+                                for (let i = 1; i <= totalPages; i++) {
+                                    const pageBtn = document.createElement('button');
+                                    pageBtn.className = 'btn';
+                                    pageBtn.textContent = i;
+                                    if (i === currentPage) {
+                                        pageBtn.style.backgroundColor = '#007bff';
+                                    }
+                                    pageBtn.addEventListener('click', function() {
+                                        currentPage = i;
+                                        renderPosts();
+                                    });
+                                    paginationElement.appendChild(pageBtn);
+                                }
+
+                                // 下一页按钮
+                                const nextBtn = document.createElement('button');
+                                nextBtn.className = 'btn';
+                                nextBtn.textContent = '下一页';
+                                nextBtn.disabled = currentPage === totalPages;
+                                nextBtn.addEventListener('click', function() {
+                                    currentPage++;
+                                    renderPosts();
+                                });
+
+                                paginationElement.insertBefore(prevBtn, paginationElement.firstChild);
+                                paginationElement.appendChild(nextBtn);
+
+                                forumContent.appendChild(paginationElement);
+                            }
+                        }
+
+                        // 保存到localStorage
+                        localStorage.setItem('forumPosts', JSON.stringify(posts));
+                    }
+
+                    // 查看帖子详情
+                    function viewPost(postId) {
+                        currentPostId = postId;
+                        const post = posts.find(p => p.id === postId);
+
+                        if (!post) return;
+
+                        // 切换到详情视图
+                        document.getElementById('forumListView').style.display = 'none';
+                        document.getElementById('forumDetailView').style.display = 'block';
+
+                        // 设置帖子标题
+                        document.getElementById('detailTitle').textContent = post.title;
+
+                        // 渲染帖子详情
+                        const postDetail = document.getElementById('postDetail');
+                        postDetail.innerHTML = `
+                    <div class="forum-post">
+                        <div class="post-header">
+                            <span>${post.author}</span>
+                            <span>${post.date}</span>
+                        </div>
+                        <h4>${post.title}</h4>
+                        <p>${post.content}</p>
+                    </div>
+                    
+                    <h4 style="margin-top: 30px; margin-bottom: 15px;">回复 (${post.replies ? post.replies.length : 0})</h4>
+                    <div id="repliesContainer">
+                        ${post.replies && post.replies.length > 0 ? 
+                            post.replies.map(reply => `
+                                <div class="forum-post" style="margin-left: 20px; border-left: 3px solid #e9ecef; padding-left: 15px;">
+                                    <div class="post-header">
+                                        <span>${reply.author}</span>
+                                        <span>${reply.date}</span>
+                                    </div>
+                                    <p>${reply.content}</p>
+                                </div>
+                            `).join('') : 
+                            '<p style="text-align: center; color: #666; padding: 20px;">暂无回复，快来发表第一个回复吧！</p>'
+                        }
+                    </div>
+                `;
+                
+                // 重新绑定提交回复按钮的事件
+                document.getElementById('submitReply').onclick = function() {
+                    const content = document.getElementById('replyContent').value.trim();
+
+                    if (!content) {
+                        alert('请输入回复内容！');
+                        return;
+                    }
+
+                    // 查找当前帖子
+                    const postIndex = posts.findIndex(p => p.id === currentPostId);
+
+                    if (postIndex === -1) return;
+
+                    // 初始化回复数组
+                    if (!posts[postIndex].replies) {
+                        posts[postIndex].replies = [];
+                    }
+
+                    // 获取电脑名称作为用户名
+                    const computerName = localStorage.getItem('computerName') || 
+                                        (navigator.userAgent.match(/Windows NT ([\d.]+)/) ? 'Windows用户' : '访客');
+                    
+                    // 如果没有存储过电脑名称，则存储
+                    if (!localStorage.getItem('computerName')) {
+                        localStorage.setItem('computerName', computerName);
+                    }
+                    
+                    // 添加新回复
+                    const newReply = {
+                        author: computerName,
+                        content: content,
+                        date: new Date().toISOString().split('T')[0]
+                    };
+
+                    posts[postIndex].replies.push(newReply);
+
+                    // 清空回复框
+                    document.getElementById('replyContent').value = '';
+
+                    // 重新渲染帖子详情
+                    viewPost(currentPostId);
+
+                    // 保存到localStorage
+                    localStorage.setItem('forumPosts', JSON.stringify(posts));
+                };
+            }
+            
+            // 返回帖子列表
+            document.getElementById('backToList').addEventListener('click', function() {
+                document.getElementById('forumListView').style.display = 'block';
+                document.getElementById('forumDetailView').style.display = 'none';
+                currentPostId = null;
+            });
+            
+            // 提交回复
+            submitReply.addEventListener('click', function() {
+                const content = replyContent.value.trim();
+                
+                if (!content) {
+                    alert('请输入回复内容！');
+                    return;
+                }
+                
+                // 查找当前帖子
+                const postIndex = posts.findIndex(p => p.id === currentPostId);
+                
+                if (postIndex === -1) return;
+                
+                // 初始化回复数组
+                if (!posts[postIndex].replies) {
+                    posts[postIndex].replies = [];
+                }
+                
+                // 获取电脑名称作为用户名
+                const computerName = localStorage.getItem('computerName') || 
+                                    (navigator.userAgent.match(/Windows NT ([\d.]+)/) ? 'Windows用户' : '访客');
+                
+                // 如果没有存储过电脑名称，则存储
+                if (!localStorage.getItem('computerName')) {
+                    localStorage.setItem('computerName', computerName);
+                }
+                
+                // 添加新回复
+                const newReply = {
+                    author: computerName,
+                    content: content,
+                    date: new Date().toISOString().split('T')[0]
+                };
+                
+                posts[postIndex].replies.push(newReply);
+                
+                // 清空回复框
+                replyContent.value = '';
+                
+                // 重新渲染帖子详情
+                viewPost(currentPostId);
+                
+                // 保存到localStorage
+                localStorage.setItem('forumPosts', JSON.stringify(posts));
+            });
+
+            // 显示/隐藏发帖表单
+            newPostBtn.addEventListener('click', function() {
+                postForm.style.display = postForm.style.display === 'none' ? 'block' : 'none';
+            });
+            
+            // 清空论坛记录
+            document.getElementById('clearForumBtn').addEventListener('click', function() {
+                if (confirm('确定要清空所有论坛记录吗？此操作不可恢复！')) {
+                    posts = [];
+                    localStorage.removeItem('forumPosts');
+                    renderPosts();
+                    alert('论坛记录已清空！');
+                }
+            });
+
+            cancelPost.addEventListener('click', function() {
+                postForm.style.display = 'none';
+                document.getElementById('postTitle').value = '';
+                document.getElementById('postContent').value = '';
+            });
+
+            // 提交新帖子
+            submitPost.addEventListener('click', function() {
+                const title = document.getElementById('postTitle').value;
+                const content = document.getElementById('postContent').value;
+
+                if (title && content) {
+                    // 生成唯一ID（使用时间戳确保唯一性）
+                    const newId = Date.now();
+                    
+                    // 获取电脑名称作为用户名
+                    const computerName = localStorage.getItem('computerName') || 
+                                        (navigator.userAgent.match(/Windows NT ([\d.]+)/) ? 'Windows用户' : '访客');
+                    
+                    // 如果没有存储过电脑名称，则存储
+                    if (!localStorage.getItem('computerName')) {
+                        localStorage.setItem('computerName', computerName);
+                    }
+                    
+                    const newPost = {
+                        id: newId,
+                        title: title,
+                        content: content,
+                        author: computerName,
+                        date: new Date().toISOString().split('T')[0],
+                        replies: []  // 改为数组而不是数字
+                    };
+
+                    posts.unshift(newPost);
+                    renderPosts();
+
+                    // 重置表单
+                    document.getElementById('postTitle').value = '';
+                    document.getElementById('postContent').value = '';
+                    postForm.style.display = 'none';
+                } else {
+                    alert('请填写标题和内容！');
+                }
+            });
+
+            // 初始化渲染
+            renderPosts();
+
+            // 做题记录功能
+            const recordsTable = document.getElementById('recordsTable');
+            const addRecordBtn = document.getElementById('addRecordBtn');
+            const recordModal = document.getElementById('recordModal');
+            const codeModal = document.getElementById('codeModal');
+            const closeRecordModal = document.getElementById('closeRecordModal');
+            const cancelRecord = document.getElementById('cancelRecord');
+            const saveRecord = document.getElementById('saveRecord');
+            const closeCodeModal = document.getElementById('closeCodeModal');
+            const closeCodeModalBtn = document.getElementById('closeCodeModalBtn');
+            const copyCodeBtn = document.getElementById('copyCodeBtn');
+            const editCodeBtn = document.getElementById('editCodeBtn');
+            
+            // 表单元素
+            const problemId = document.getElementById('problemId');
+            const problemName = document.getElementById('problemName');
+            const difficulty = document.getElementById('difficulty');
+            const status = document.getElementById('status');
+            const code = document.getElementById('code');
+            const notes = document.getElementById('notes');
+            
+            // 显示元素
+            const codeDisplay = document.getElementById('codeDisplay');
+            const notesDisplay = document.getElementById('notesDisplay');
+            const problemInfo = document.getElementById('problemInfo');
+            const modalTitle = document.getElementById('modalTitle');
+            const codeModalTitle = document.getElementById('codeModalTitle');
+            
+            // 当前编辑的记录索引
+            let currentEditIndex = -1;
+
+            // 从localStorage获取记录或使用默认数据
+            let records = JSON.parse(localStorage.getItem('problemRecords')) || [{
+                id: 'P1001',
+                name: 'A+B问题',
+                difficulty: '简单',
+                date: '2023-10-01',
+                status: '已完成',
+                code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout << a + b << endl;\n    return 0;\n}',
+                notes: '简单的输入输出问题，注意数据范围。'
+            }, {
+                id: 'P1002',
+                name: '过河卒',
+                difficulty: '中等',
+                date: '2023-10-02',
+                status: '进行中',
+                code: '// 正在编写中...',
+                notes: '这是一个动态规划问题，需要考虑马的移动规则。'
+            }, {
+                id: 'P1003',
+                name: '铺地毯',
+                difficulty: '困难',
+                date: '2023-10-03',
+                status: '未开始',
+                code: '',
+                notes: ''
+            }];
+
+            // 渲染做题记录
+            function renderRecords() {
+                recordsTable.innerHTML = '';
+                records.forEach((record, index) => {
+                    const row = document.createElement('tr');
+                    const statusClass = record.status === '已完成' ? 'status-completed' :
+                        record.status === '进行中' ? 'status-pending' : '';
+
+                    row.innerHTML = `
+                        <td>${record.id}</td>
+                        <td>${record.name}</td>
+                        <td>${record.difficulty}</td>
+                        <td>${record.date}</td>
+                        <td class="${statusClass}">${record.status}</td>
+                        <td>
+                            <button class="btn view-btn" data-index="${index}" style="padding: 5px 10px; font-size: 14px; margin-right: 5px;">查看</button>
+                            <button class="btn edit-btn" data-index="${index}" style="padding: 5px 10px; font-size: 14px; margin-right: 5px;">编辑</button>
+                            <button class="btn delete-btn" data-index="${index}" style="padding: 5px 10px; font-size: 14px; background-color: #dc3545;">删除</button>
+                        </td>
+                    `;
+                    recordsTable.appendChild(row);
+                });
+
+                // 添加事件监听器
+                document.querySelectorAll('.view-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        viewRecord(parseInt(this.getAttribute('data-index')));
+                    });
+                });
+                
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        editRecord(parseInt(this.getAttribute('data-index')));
+                    });
+                });
+                
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        deleteRecord(parseInt(this.getAttribute('data-index')));
+                    });
+                });
+
+                // 保存到localStorage
+                localStorage.setItem('problemRecords', JSON.stringify(records));
+            }
+            
+            // 显示添加记录模态框
+            addRecordBtn.addEventListener('click', function() {
+                currentEditIndex = -1;
+                modalTitle.textContent = '添加做题记录';
+                problemId.value = '';
+                problemName.value = '';
+                difficulty.value = '简单';
+                status.value = '未开始';
+                code.value = '';
+                notes.value = '';
+                recordModal.style.display = 'flex';
+            });
+            
+            // 关闭记录模态框
+            closeRecordModal.addEventListener('click', function() {
+                recordModal.style.display = 'none';
+            });
+            
+            cancelRecord.addEventListener('click', function() {
+                recordModal.style.display = 'none';
+            });
+            
+            // 保存记录
+            saveRecord.addEventListener('click', function() {
+                const newRecord = {
+                    id: problemId.value.trim(),
+                    name: problemName.value.trim(),
+                    difficulty: difficulty.value,
+                    date: new Date().toISOString().split('T')[0],
+                    status: status.value,
+                    code: code.value,
+                    notes: notes.value
+                };
+                
+                if (!newRecord.id || !newRecord.name) {
+                    alert('请填写题目编号和题目名称！');
+                    return;
+                }
+                
+                if (currentEditIndex === -1) {
+                    // 添加新记录
+                    records.push(newRecord);
+                } else {
+                    // 更新现有记录
+                    records[currentEditIndex] = newRecord;
+                }
+                
+                renderRecords();
+                recordModal.style.display = 'none';
+            });
+            
+            // 查看记录
+            function viewRecord(index) {
+                const record = records[index];
+                codeModalTitle.textContent = '查看题目代码';
+                problemInfo.textContent = `题目编号: ${record.id} | 题目名称: ${record.name} | 难度: ${record.difficulty} | 状态: ${record.status}`;
+                codeDisplay.textContent = record.code || '暂无代码';
+                notesDisplay.textContent = record.notes || '暂无笔记';
+                
+                // 设置编辑按钮的数据索引
+                editCodeBtn.setAttribute('data-index', index);
+                
+                codeModal.style.display = 'flex';
+            }
+            
+            // 编辑记录
+            function editRecord(index) {
+                currentEditIndex = index;
+                const record = records[index];
+                modalTitle.textContent = '编辑做题记录';
+                problemId.value = record.id;
+                problemName.value = record.name;
+                difficulty.value = record.difficulty;
+                status.value = record.status;
+                code.value = record.code;
+                notes.value = record.notes;
+                recordModal.style.display = 'flex';
+            }
+            
+            // 删除记录
+            function deleteRecord(index) {
+                if (confirm('确定要删除这条记录吗？')) {
+                    records.splice(index, 1);
+                    renderRecords();
+                }
+            }
+            
+            // 关闭代码模态框
+            closeCodeModal.addEventListener('click', function() {
+                codeModal.style.display = 'none';
+            });
+            
+            closeCodeModalBtn.addEventListener('click', function() {
+                codeModal.style.display = 'none';
+            });
+            
+            // 复制代码
+            copyCodeBtn.addEventListener('click', function() {
+                const codeText = codeDisplay.textContent;
+                if (!codeText || codeText === '暂无代码') {
+                    alert('没有可复制的代码！');
+                    return;
+                }
+                
+                // 创建临时文本区域
+                const textarea = document.createElement('textarea');
+                textarea.value = codeText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    alert('代码已复制到剪贴板！');
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    alert('复制失败，请手动复制代码。');
+                }
+                
+                document.body.removeChild(textarea);
+            });
+            
+            // 从查看代码模态框编辑记录
+            editCodeBtn.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                codeModal.style.display = 'none';
+                editRecord(index);
+            });
+
+            // 初始化渲染
+            renderRecords();
+
+            // AI助手功能
+            const aiChat = document.getElementById('aiChat');
+            const aiInput = document.getElementById('aiInput');
+            const aiSend = document.getElementById('aiSend');
+
+            // DeepSeek API配置
+            // 从localStorage获取API密钥或使用默认值
+            let API_KEY = localStorage.getItem('deepseek_api_key') || 'sk-227b62c5cdb9453dad7ac8957d86985b';
+            const API_URL = "https://api.deepseek.com/v1/chat/completions";
+            
+            // API密钥配置模态框
+            const apiKeyModal = document.getElementById('apiKeyModal');
+            const apiKeyBtn = document.getElementById('apiKeyBtn');
+            const closeModal = document.getElementById('closeModal');
+            const cancelApiKey = document.getElementById('cancelApiKey');
+            const saveApiKey = document.getElementById('saveApiKey');
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            
+            // 显示API密钥配置模态框
+            apiKeyBtn.addEventListener('click', function() {
+                apiKeyModal.style.display = 'flex';
+                // 如果已有API密钥，显示部分内容
+                if (API_KEY) {
+                    apiKeyInput.value = API_KEY.substring(0, 8) + '...';
+                }
+            });
+            
+            // 关闭模态框
+            closeModal.addEventListener('click', function() {
+                apiKeyModal.style.display = 'none';
+            });
+            
+            cancelApiKey.addEventListener('click', function() {
+                apiKeyModal.style.display = 'none';
+            });
+            
+            // 保存API密钥
+            saveApiKey.addEventListener('click', function() {
+                const newApiKey = apiKeyInput.value.trim();
+                if (newApiKey && newApiKey.startsWith('sk-')) {
+                    API_KEY = newApiKey;
+                    localStorage.setItem('deepseek_api_key', API_KEY);
+                    apiKeyModal.style.display = 'none';
+                    
+                    // 显示成功消息
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'ai-message ai-bot';
+                    successMessage.textContent = 'API密钥已成功保存！现在您可以开始使用DeepSeek AI助手了。';
+                    aiChat.appendChild(successMessage);
+                    aiChat.scrollTop = aiChat.scrollHeight;
+                } else {
+                    alert('请输入有效的DeepSeek API密钥（应以"sk-"开头）。');
+                }
+            });
+            
+            // 检查API密钥是否已配置
+            if (!API_KEY) {
+                const welcomeMessage = document.createElement('div');
+                welcomeMessage.className = 'ai-message ai-bot';
+                welcomeMessage.innerHTML = '您好！我是DeepSeek AI助手。请先点击右上角的"配置API密钥"按钮，输入您的DeepSeek API密钥以开始使用。';
+                aiChat.appendChild(welcomeMessage);
+            }
+            
+            // 发送消息到DeepSeek API
+            async function sendMessageToDeepSeek(message) {
+                try {
+                    // 显示思考中状态
+                    const thinkingMessage = document.createElement('div');
+                    thinkingMessage.className = 'ai-message ai-bot';
+                    thinkingMessage.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 正在思考...';
+                    aiChat.appendChild(thinkingMessage);
+                    aiChat.scrollTop = aiChat.scrollHeight;
+                    
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${API_KEY}`
+                        },
+                        body: JSON.stringify({
+                            model: "deepseek-chat",
+                            messages: [
+                                {role: "system", content: "你是一个专业的编程助手，能够解答各种编程问题，提供代码示例，并解释技术概念。"},
+                                {role: "user", content: message}
+                            ],
+                            temperature: 0.7,
+                            max_tokens: 1024
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        const errorMessage = errorData.error?.message || `API请求失败: ${response.status} ${response.statusText}`;
+                        throw new Error(errorMessage);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // 移除思考中状态
+                    aiChat.removeChild(thinkingMessage);
+                    
+                    // 添加AI回复
+                    const aiMessage = document.createElement('div');
+                    aiMessage.className = 'ai-message ai-bot';
+                    aiMessage.textContent = data.choices[0].message.content;
+                    aiChat.appendChild(aiMessage);
+                    aiChat.scrollTop = aiChat.scrollHeight;
+                    
+                } catch (error) {
+                    console.error("DeepSeek API错误:", error);
+                    
+                    // 移除思考中状态
+                    if (aiChat.contains(thinkingMessage)) {
+                        aiChat.removeChild(thinkingMessage);
+                    }
+                    
+                    // 显示错误信息
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'ai-message ai-bot';
+                    errorMessage.style.color = '#ff6b6b';
+                    
+                    // 提供更友好的错误信息
+                    let friendlyError = error.message;
+                    if (error.message.includes('401')) {
+                        friendlyError = 'API密钥无效，请检查您的API密钥是否正确设置。' +
+                                      '您可以通过点击"配置API密钥"按钮来更新您的密钥。';
+                    } else if (error.message.includes('429')) {
+                        friendlyError = 'API请求频率过高，请稍后再试。';
+                    } else if (error.message.includes('500')) {
+                        friendlyError = '服务器内部错误，请稍后再试或联系技术支持。';
+                    } else if (error.message.includes('fetch')) {
+                        friendlyError = '网络连接失败，请检查您的网络连接。';
+                    }
+                    
+                    errorMessage.textContent = friendlyError;
+                    aiChat.appendChild(errorMessage);
+                    aiChat.scrollTop = aiChat.scrollHeight;
+                }
+            }
+            
+            // 发送消息
+            function sendMessage() {
+                const message = aiInput.value.trim();
+                if (message) {
+                    // 检查API密钥是否已配置
+                    if (!API_KEY) {
+                        // 显示提示消息
+                        const promptMessage = document.createElement('div');
+                        promptMessage.className = 'ai-message ai-bot';
+                        promptMessage.textContent = '请先配置DeepSeek API密钥才能使用AI助手功能。点击右上角的"配置API密钥"按钮进行设置。';
+                        aiChat.appendChild(promptMessage);
+                        aiChat.scrollTop = aiChat.scrollHeight;
+                        return;
+                    }
+                    
+                    // 添加用户消息
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'ai-message ai-user';
+                    userMessage.textContent = message;
+                    aiChat.appendChild(userMessage);
+
+                    // 清空输入框
+                    aiInput.value = '';
+
+                    // 滚动到底部
+                    aiChat.scrollTop = aiChat.scrollHeight;
+                    
+                    // 发送消息到DeepSeek API
+                    sendMessageToDeepSeek(message);
+                }
+            }
+
+            aiSend.addEventListener('click', sendMessage);
+            aiInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // 下载资源功能
+            const downloadsGrid = document.getElementById('downloadsGrid');
+
+            // 下载资源数据
+            const downloads = [{
+                name: 'JavaScript高级教程',
+                type: 'PDF',
+                size: '2.5 MB',
+                icon: 'file-pdf'
+            }, {
+                name: '算法与数据结构',
+                type: 'ZIP',
+                size: '15.3 MB',
+                icon: 'file-archive'
+            }, {
+                name: '前端开发工具包',
+                type: 'ZIP',
+                size: '8.7 MB',
+                icon: 'toolbox'
+            }, {
+                name: 'React项目模板',
+                type: 'ZIP',
+                size: '3.2 MB',
+                icon: 'react'
+            }, {
+                name: 'Python数据分析',
+                type: 'PDF',
+                size: '4.1 MB',
+                icon: 'file-pdf'
+            }, {
+                name: 'CSS样式库',
+                type: 'ZIP',
+                size: '1.8 MB',
+                icon: 'css3-alt'
+            }];
+
+            // 渲染下载资源
+            downloads.forEach(item => {
+                const downloadCard = document.createElement('div');
+                downloadCard.className = 'download-card';
+                downloadCard.innerHTML = `
+                    <div class="download-icon">
+                        <i class="fas fa-${item.icon}"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>${item.name}</h3>
+                        <p>类型: ${item.type} | 大小: ${item.size}</p>
+                        <button class="btn download-btn">下载</button>
+                    </div>
+                `;
+                downloadsGrid.appendChild(downloadCard);
+            });
+
+            // 下载按钮事件
+            document.querySelectorAll('.download-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('开始下载...（演示功能）');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
